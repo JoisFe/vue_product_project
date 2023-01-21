@@ -9,10 +9,18 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <header>
+      <h1 v-text="sitename"></h1>
+      <p>Welcome to {{sitename}}</p>
+    </header>
+  </div>
   <script type="text/javascript">
     var webstore = new Vue({
-      el: '#app'
+      el: '#app',
+      data: {
+        sitename: 'Vue.js 애완용품샵'
+      }
     });
   </script>
 </body>
