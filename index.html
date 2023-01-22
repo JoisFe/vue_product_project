@@ -16,6 +16,11 @@
           <h1 v-text="sitename"></h1>
           <p>Welcome to {{sitename}}</p>
         </div>
+        <div class="nav navbar-nav navbar-right cart">
+          <span class="glyphicon glyphicon-shopping-cart">
+            {{cartItemCount}}
+          </span>
+        </div>
       </div>
     </header>
     <main>
@@ -58,7 +63,12 @@
         addToCart: function () {
           this.cart.push(this.product.id);
         }
-      },
+      }, 
+      computed: {
+        cartItemCount: function() {
+          return this.cart.length || '';
+        }
+      }, 
       filters: {
         formatPrice: function (price) {
           if (!parseInt(price)) {
