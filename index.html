@@ -36,7 +36,7 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button class="btn btn-primary btn-lg" v-on:click="addToCart">
+          <button class="btn btn-primary btn-lg" v-on:click="addToCart" v-show="canAddToCart">
             장바구니 담기
           </button>
         </div>
@@ -55,7 +55,8 @@
           title: "고양이 사료, 25파운드",
           description: "당신의 고양이를 위한 <em>거부할 수 없는</em>, 유기농 25파운드 사료입니다.",
           price: 2000,
-          image: "assets/images/product-fullsize.png"
+          image: "assets/images/product-fullsize.png",
+          availableInventory: 5
         },
         cart: []
       },
@@ -63,12 +64,15 @@
         addToCart: function () {
           this.cart.push(this.product.id);
         }
-      }, 
+      },
       computed: {
-        cartItemCount: function() {
+        cartItemCount: function () {
           return this.cart.length || '';
+        },
+        canAddToCart: function () {
+          return this.product.availableInventory > this.cartItemCount;
         }
-      }, 
+      },
       filters: {
         formatPrice: function (price) {
           if (!parseInt(price)) {
