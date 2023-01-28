@@ -44,6 +44,15 @@
               장바구니 담기
             </button>
             <button disabled="true" class="btn btn-primary btn-lg" v-else>장바구니 담기</button>
+            <span class="inventory-message" v-if="product.availableInventory - cartItemCount === 0">
+              품절!
+            </span>
+            <span class="inventory-message" v-else-if="product.availableInventory - cartItemCount < 5">
+              {{product.availableInventory - cartItemCount}} 남았습니다!
+            </span>
+            <span class="inventory-message" v-else>
+              지금 구매하세요!
+            </span>
           </div>
         </div>
         <div v-else>
@@ -169,7 +178,7 @@
           description: "당신의 고양이를 위한 <em>거부할 수 없는</em>, 유기농 25파운드 사료입니다.",
           price: 2000,
           image: "assets/images/product-fullsize.png",
-          availableInventory: 5
+          availableInventory: 10
         },
         cart: []
       },
