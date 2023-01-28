@@ -53,6 +53,9 @@
             <span class="inventory-message" v-else>
               지금 구매하세요!
             </span>
+            <div class="rating">
+              <span v-bind:class="{'rating-active': checkRating(n, product)}" v-for="n in 5">☆</span>
+            </div>
           </div>
         </div>
         <div v-else>
@@ -178,7 +181,8 @@
           description: "당신의 고양이를 위한 <em>거부할 수 없는</em>, 유기농 25파운드 사료입니다.",
           price: 2000,
           image: "assets/images/product-fullsize.png",
-          availableInventory: 10
+          availableInventory: 10,
+          rating: 3
         },
         cart: []
       },
@@ -191,6 +195,9 @@
         },
         submitForm() {
           alert("제출 완료");
+        },
+        checkRating(n) {
+          return this.product.rating - n >= 0;
         }
       },
       computed: {
